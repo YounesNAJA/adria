@@ -27,7 +27,20 @@ class Vehicle {
 	}
 }
 
-class SeaPlane extends Vehicle implements FastFly {}
+interface Sail {
+	default public void cruise() {
+		System.out.println("Sail::cruise");
+	}
+}
+
+class SeaPlane extends Vehicle implements FastFly, Sail {
+
+	@Override
+	public void cruise() {
+		System.out.println("SeaPlane::cruise");
+		FastFly.super.cruise(); // You are calling a default method
+		// Without super, you are calling a static method
+	}}
 
 public class Sample3 {
 	public void use() {
@@ -41,5 +54,4 @@ public class Sample3 {
 		new Sample3().use();
 
 	}
-
 }
