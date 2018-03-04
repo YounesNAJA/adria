@@ -38,7 +38,8 @@ public class PersonDAOImpl implements PersonDAO {
 		try (BufferedReader br = new BufferedReader(new FileReader(this.getFile()))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
-				String[] parts = line.split(", ");
+		    	
+				String[] parts = line.split(Person.SEPARATOR);
 				Long idFound = Long.parseLong(parts[0]);
 				if(id.equals(idFound))
 					return new Person(line);
@@ -77,7 +78,7 @@ public class PersonDAOImpl implements PersonDAO {
 	private void writeToFile(Person person) {
 		try {
 			FileWriter fw = new FileWriter(this.getFile(), true);
-			fw.write(person.toString() + "\n");
+			fw.write(person.toString() + Person.LINE_SEPARATOR);
 			fw.close();
 		} catch (IOException ioe) {
 			System.err.println("IOException: " + ioe.getMessage());
@@ -107,7 +108,7 @@ public class PersonDAOImpl implements PersonDAO {
 		try (BufferedReader br = new BufferedReader(new FileReader(this.getFile()))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
-				String[] parts = line.split(", ");
+				String[] parts = line.split(Person.SEPARATOR);
 				Long idFound = Long.parseLong(parts[0]);
 				if(!id.equals(idFound))
 					persons.add(new Person(line));

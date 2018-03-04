@@ -35,27 +35,22 @@
 				<div class="form-group">
 					<form:label for="completeName" path="completeName">Nom complet</form:label>
 					<form:input type="text" path="completeName"
-						class="form-control is-invalid" id="completeName"
+						class="form-control" id="completeName"
 						placeholder="Entez votre nom complet" />
-					<form:errors path="completeName" cssClass="invalid-feedback"
-						element="div" />
 				</div>
 
 				<div class="form-group">
 					<form:label path="phoneNum" for="phoneNum">Numéro de téléphone</form:label>
 					<form:input type="text" path="phoneNum"
-						class="form-control is-invalid" id="phoneNum"
+						class="form-control" id="phoneNum"
 						placeholder="Entez votre numéro de téléphone" />
-					<form:errors path="phoneNum" cssClass="invalid-feedback"
-						element="div" />
 				</div>
 
 				<div class="form-group">
 					<form:label path="email" for="email">Email</form:label>
 					<form:input type="email" path="email"
-						class="form-control is-invalid" id="email"
+						class="form-control" id="email"
 						placeholder="Entez votre email" />
-					<form:errors path="email" cssClass="invalid-feedback" element="div" />
 				</div>
 
 				<button id="addPerson" type="submit" class="btn btn-primary">Ajouter</button>
@@ -96,7 +91,6 @@
 	
 			personUtil.save(personObj);
 		});
-
 		
 	</script>
 </body>

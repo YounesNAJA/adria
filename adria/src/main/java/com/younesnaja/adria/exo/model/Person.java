@@ -11,12 +11,15 @@ import javax.validation.constraints.Size;
 @Entity
 public class Person implements Serializable {
 	private static final long serialVersionUID = -6061836083473255990L;
+	public static final String SEPARATOR = " | ";
+	public static final String GET_SEPARATOR = " \\| ";
+	public static final String LINE_SEPARATOR = "\n";
 	
 	@Id
 	private Long id;
 	
 	@NotEmpty(message="Entez votre nom complet.")
-	@Pattern(regexp="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message="Nom erroné.")
+	@Pattern(regexp="^[a-zA-Z]+((['. -][a-zA-Z ])+[a-zA-Z]*)*$", message="Nom erroné.")
 	private String completeName;
 	
 	@NotEmpty(message="Entez votre numéro de téléphone.")
@@ -40,7 +43,7 @@ public class Person implements Serializable {
 	}
 
 	public Person(String line) {
-		String[] parts = line.split(", ");
+		String[] parts = line.split(GET_SEPARATOR);
 		this.id = Long.parseLong(parts[0]);
 		this.completeName = parts[1];
 		this.phoneNum = parts[2];
@@ -81,7 +84,7 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return id + ", " + completeName + ", " + phoneNum + ", " + email;
+		return id + SEPARATOR + completeName + SEPARATOR + phoneNum + SEPARATOR + email;
 	}
 	
 	

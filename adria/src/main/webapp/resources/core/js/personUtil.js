@@ -3,9 +3,13 @@
  */
 personUtil = {};
 
+personUtil.removeFieldsErrors = function() {	
+	$("#personForm [type='text'].form-control").removeClass('is-invalid');
+	$("#email").removeClass('is-invalid');
+}
+
 personUtil.emptyFields = function() {
-	$("#completeName").val("");
-	$("#phoneNum").val("");
+	$("#personForm [type='text'].form-control").val("");
 	$("#email").val("");
 	$("#id").val("");
 }
@@ -41,6 +45,7 @@ personUtil.getAll = function() {
 }
 
 personUtil.save = function(personObj) {
+	personUtil.removeFieldsErrors();
 	$.post({
 		url : '/adriaexo/addPerson',
 		data : personObj,
@@ -50,6 +55,7 @@ personUtil.save = function(personObj) {
 				personUtil.getAll();
 			} else {
 				$.each(res.errorMessages, function(key, value) {
+					$("#" + key).addClass('is-invalid');
 					$("#" + key).after("<span class='invalid-feedback'>" + value + "</span>")
 				});
 			}

@@ -1,5 +1,2 @@
-1520182759188, Mohamed Amine NAJA, 0674221611, simohamedman@gmail.com
-1520183535592, Mohamed Amine NAJA, 0674221611, simohamedman@gmail.com
-1520183551346, Younes NAJA, 0659703347, naja.younes@gmail.com
-1520183897478, Younes NAJA, 0659703347, naja.younes@gmail.com
-1520183997284, Younes NAJA, 0659703347, naja.younes@gmail.com
+1520188953086 | Younes NAJA | 0659703347 | naja.younes@gmail.com
+1520188965614 | Oumaima NAJA | 0606926499 | naja.younes@gmail.com
