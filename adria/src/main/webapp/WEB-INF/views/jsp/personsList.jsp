@@ -12,93 +12,23 @@
 	var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
-<spring:url value="/resources/core/js/home.js" var="coreJs" />
+
 <spring:url value="/resources/core/js/bootstrap.min.js"
 	var="bootstrapJs" />
 <spring:url value="/resources/core/js/jquery.min.js" var="jquery" />
+<spring:url value="/resources/core/js/personUtil.js" var="coreJs" />
 
-<script src="${coreJs}"></script>
-<script src="${bootstrapJs}"></script>
 <script src="${jquery}"></script>
+<script src="${bootstrapJs}"></script>
+<script src="${coreJs}"></script>
 <title>Personne - Accueil</title>
-<script>
-	$(function() {
-		$.ajax({
-			method : "GET",
-			url : "/adriaexo/persons",
-			contentType : "application/json; charset=utf-8",
-			dataType : "json",
-			success : function(result) {
-				var personsDataTable = $("#personsData");
-				result.forEach(function(element) {
-					personsDataTable.append("<tr><td style='display:none;'>" + element.id + "</td>\
-							<td>" + element.completeName + "</td>\
-							<td>" + element.phoneNum + "</td>\
-							<td>" + element.email + "</td>\
-							<td><button type='button' id='delete' class='btn btn-danger'>Supprimer</button></td></tr>");
-				});
-			}
-		})
-			// 		.done(function(data) {
-			// 			for (i = 0; i < data.length; i++) {
-			// 				console.log(data[i]);
-			// 			}
-			// 		})
-			.fail(function() {
-				console.log("Failed 4");
-			})
-	});
-</script>
-
-<script type="text/javascript">
-	$(function() {
-		/*  Submit form using Ajax */
-		$('button[type=submit]').click(function(e) {
-
-			console.log($("#completeName").val());
-			var person = {
-				"completeName" : $("#completeName").val(),
-				"email" : $("#email").val(),
-				"phoneNum" : $("#phoneNum").val()
-			};
-
-			console.log("person");
-			console.log(person);
-			//Prevent default submission of form
-			e.preventDefault();
-
-			//Remove all errors
-			$('.invalid-feedback').remove();
-
-			$.post({
-				url : '/adriaexo/addPerson',
-				data : person,
-				success : function(res) {
-
-					if (res.validated) {
-						// 							//Set response
-						// 							$('#resultContainer pre code').text(JSON.stringify(res.person));
-						// 							$('#resultContainer').show();
-
-					} else {
-						//Set error messages
-						$.each(res.errorMessages, function(key, value) {
-							console.log(key + " " + value);
-							// 								$('input[name=' + key + ']').after('<span class="error">' + value + '</span>');
-							$("#" + key).after("<span class='invalid-feedback'>" + value + "</span>")
-						});
-					}
-				}
-			})
-		});
-	});
-</script>
 </head>
 <body>
 	<br />
 	<div class="container">
 		<div class="container">
-			<form:form id="personForm" method="POST" action="#" modelAttribute="person">
+			<form:form id="personForm" method="POST" action="#"
+				modelAttribute="person">
 
 				<form:input type="hidden" path="id" id="id" />
 
@@ -128,7 +58,7 @@
 					<form:errors path="email" cssClass="invalid-feedback" element="div" />
 				</div>
 
-				<button type="submit" class="btn btn-primary">Ajouter</button>
+				<button id="addPerson" type="submit" class="btn btn-primary">Ajouter</button>
 
 			</form:form>
 		</div>
@@ -152,7 +82,22 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		personUtil.getAll();
+		$('#addPerson').click(function(e) {
+			var personObj = {
+				"completeName" : $("#completeName").val(),
+				"email" : $("#email").val().replace(/\s/g, ''),
+				"phoneNum" : $("#phoneNum").val().replace(/\s/g, '')
+			};
+	
+			e.preventDefault();
+			$('.invalid-feedback').remove();
+	
+			personUtil.save(personObj);
+		});
 
-
+		
+	</script>
 </body>
 </html>

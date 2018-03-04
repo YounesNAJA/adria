@@ -1,4 +1,4 @@
-package com.younesnaja.adria.exo.Model;
+package com.younesnaja.adria.exo.model;
 
 import java.util.Map;
 

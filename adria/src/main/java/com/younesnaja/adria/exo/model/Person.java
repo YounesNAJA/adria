@@ -1,4 +1,4 @@
-package com.younesnaja.adria.exo.Model;
+package com.younesnaja.adria.exo.model;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = -6061836083473255990L;
 	
 	@Id
-	private Integer id;
+	private Long id;
 	
 	@NotEmpty(message="Entez votre nom complet.")
 	@Pattern(regexp="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message="Nom erroné.")
@@ -31,7 +31,7 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(Integer id, String completeName, String phoneNum, String email) {
+	public Person(Long id, String completeName, String phoneNum, String email) {
 		super();
 		this.id = id;
 		this.completeName = completeName;
@@ -39,11 +39,19 @@ public class Person implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public Person(String line) {
+		String[] parts = line.split(", ");
+		this.id = Long.parseLong(parts[0]);
+		this.completeName = parts[1];
+		this.phoneNum = parts[2];
+		this.email = parts[3];
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

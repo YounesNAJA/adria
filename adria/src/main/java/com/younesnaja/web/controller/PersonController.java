@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.younesnaja.adria.exo.Model.Person;
+import com.younesnaja.adria.exo.model.Person;
 
 @Controller
 @RequestMapping("/person")

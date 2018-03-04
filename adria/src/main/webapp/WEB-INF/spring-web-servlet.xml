@@ -11,8 +11,8 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.younesnaja.web" />
-	<context:component-scan base-package="com.younesnaja.adria.exo.DAO" />
-	<context:component-scan base-package="com.younesnaja.adria.exo.Service" />
+	<context:component-scan base-package="com.younesnaja.adria.exo.dao" />
+	<context:component-scan base-package="com.younesnaja.adria.exo.service" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
